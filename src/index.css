@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wdth,wght,YTLC@0,6..12,75..125,200..1000,440..540;1,6..12,75..125,200..1000,440..540&display=swap');
+
+:root {
+  --black: #000000;
+  --dark-bg: hsl(207, 26%, 17%);
+  --article-color: hsl(209, 23%, 22%);
+  --text-color: hsl(0, 0%, 100%);
+  --light-mode-text: hsl(200, 15%, 8%);
+  --light-mode-input: hsl(0, 0%, 52%);
+  --light-mode-background: hsl(0, 0%, 98%);
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+img {
+  max-width: 100%;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: #fafafa;
+  color: #000000;
+  margin: 10px;
+
+
+}
+
+.grid article img {
+  border-radius: 5px 5px 0 0;
+  height: 150px;
+  width: 250px;
+  padding: 5px;
+}
+
+
+
+.grid .details h4 {
+  padding-bottom: 5px;
+}
+
+.grid .details h4 span {
+  font-weight: 300;
+}
+
+.grid .details {
+  background-color: #ffffff;
+  padding: 40px 20px;
+  margin-top: -20px;
+  border-radius: 0 0 7px 7px;
+  width: 250px;
+  height: 175px;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  padding: 20px;
+}
+
+
+.containerdiv {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+
+
+.header {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  width: 100%;
+  box-shadow: 0px 10px 15px rgb(222, 222, 222);
+  background-color: #ffffff;
+  font-size: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+
+}
+
+
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+  flex-direction: row;
+
+}
+
+.filter .form-control {
+  width: 75%;
+
+}
+
+.filter .form-control input {
+  background-color: #ffffff;
+  border: none;
+  outline: none;
+  padding: 12px;
+  border-radius: 8px;
+  color: #000000;
+  font-family: inherit;
+  letter-spacing: 1.5px;
+  width: 75%;
+  margin: 0 0 30px;
+}
+
+
+
+.filter .form-control input::placeholder {
+  color: white;
+}
+
+
+.filter .region-filter .select {
+  background-color: #fff;
+  color: #848484;
+  font-family: inherit;
+  padding: 12px;
+  width: 200px;
+  border: none;
+  border-radius: 5px;
+
+}
+
+@media(min-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 60px;
+  }
+
+  .header,
+  .filter,
+  .grid {
+    padding: 20px 100px;
+  }
+}
+
+
+.formDataStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+
+
+@media (min-width: 768px) {
+  .filter .form-control {
+    width: auto;
+  }
+
+  .filter {
+    flex-direction: row;
+  }
+
+  .filter .form-control input {
+    width: auto;
+    margin: 0;
+  }
+
+  .filter .region-filter {
+    width: auto;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+
+
+
+.btn-light {
+  background-color: #ffffff;
+}
+
+
+
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: #000000;
+}
+
+
+
+
+.btn {
+  background-color: #e1e1e1;
+  padding: 5px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+
+
+.country {
+  padding: 50px;
+}
+
+
+
+.btn-light {
+  margin-bottom: 30px;
+  display: inline-block;
+
+}
+
+
+.country article .country-details div{
+margin: 30px 0;
+}
+
+.country article .country-details div h2{
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: 1px; 
+
+}
+
+
+.country article .country-details div h5{
+  font-weight: 600;
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+
+.country article .country-details div h5 span{
+  font-weight: 300;
+}
+
+
+
+.country article h3{
+  font-weight: 600;
+
+}
+
+
+
+.country article .borders {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.country article .borders ul{
+margin: 10px;
+background-color: #ffffff;
+padding: 3px 20px;
+border-radius: 3px;
+box-shadow: 0 5px 20px hsla(200, 15%, 8%, 0.5);
+}
+
+
+
+@media (min-width: 992px){
+.country article .country-inner{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.country article .country-details{
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media (min-width: 1200px) {
+  .country{
+      max-width: 1100px;
+      margin: auto;
+  }
+}
+
+
+.clear-all {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.clear-all:hover {
+  background-color: darkred;
+}
