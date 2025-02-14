@@ -2,38 +2,63 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { ref, get, set } from "firebase/database";
 
-const Country = () => {
+const Country = ({ dataBase }) => {
     const [country, setCountry] = useState([]);
     const { name } = useParams();
     const [views, setViews] = useState(0);
 
+
     useEffect(() => {
-        
         const fetchCountryData = async () => {
             const response = await fetch(`https://restcountries.com/v3.1/name/${name}`);
             const countryData = await response.json();
             setCountry(countryData);
         };
-
         fetchCountryData();
-
-    }, [name]); 
-
-    useEffect(() => {
-        
-        const storedViews = localStorage.getItem(name);
-        console.log(storedViews);
-        if (storedViews !== null) {
-            const newViews = parseInt(storedViews) + 1;
-            console.log(newViews);
-            localStorage.setItem(name, newViews); 
-            setViews(newViews); 
-        }else{
-const newViews = 0;
-localStorage.setItem(name, newViews);
-        }
     }, [name]);
+
+    
+    useEffect(() => {
+        const updateViewCount = async () => {
+            const countryRef = ref(dataBase, `countryViews/${name}`);
+            const snapshot = await get(countryRef);
+
+            let newViews = 1;
+            if (snapshot.exists()) {
+                newViews = snapshot.val() + 1; 
+            }
+
+            setViews(newViews);
+            set(countryRef, newViews);
+        };
+
+        updateViewCount();
+    }, [name, dataBase]);
+
+    
+    const saveCountry = async () => {
+        if (country.length === 0) return; 
+
+        const countryData = country[0]; 
+        const countryRef = ref(dataBase, `savedCountries/${countryData.name.common}`);
+
+        try {
+            const snapshot = await get(ref(dataBase, "savedCountries"));
+            const savedCountries = snapshot.exists() ? snapshot.val() : {};
+
+            if (savedCountries[countryData.name.common]) {
+                alert(`${countryData.name.common} is already saved!`);
+                return;
+            }
+
+            await set(countryRef, countryData);
+            alert(`${countryData.name.common} saved successfully!`);
+        } catch (error) {
+            console.error("Error saving country:", error);
+        }
+    };
 
     return (
         <>
@@ -66,6 +91,8 @@ localStorage.setItem(name, newViews);
                                         </div>
                                     </div>
                                 </div>
+
+                                <button className="btn" onClick={saveCountry}>Save Country</button>
 
                                 <div>
                                     <h3>Border Countries: </h3>
